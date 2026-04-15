@@ -135,6 +135,9 @@ body {
 	display: flex;
 	font: var(--header-tags);
 	gap: 0.5rem;
+	max-height: 200px;
+	overflow: hidden;
+	transition: max-height 400ms ease-in-out;
 }
 
 .todo-card__priority {
@@ -153,6 +156,9 @@ body {
 
 .todo-card__description {
 	font: var(--text-p);
+	max-height: 200px; /* any value larger than the content */
+	overflow: hidden;
+	transition: max-height 400ms ease-in-out;
 }
 
 .time-details {
@@ -184,6 +190,9 @@ time {
 	gap: 0.5rem;
 	list-style: none;
 	font: var(--category-tags);
+	max-height: 200px;
+	overflow: hidden;
+	transition: max-height 400ms ease-in-out;
 }
 
 .category-tag {
@@ -213,6 +222,8 @@ time {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border-top: 1px solid var(--border);
+	padding-top: 1rem;
 }
 
 .button {
@@ -228,16 +239,16 @@ time {
 	gap: 0.5rem;
 }
 
-.delete-todo:hover{
+.delete-todo:hover {
 	color: var(--danger);
 	background-color: #fef2f2;
 }
 
-.delete-todo:hover svg path{
-    fill: var(--danger);
+.delete-todo:hover svg path {
+	fill: var(--danger);
 }
 
-.edit-todo:hover{
+.edit-todo:hover {
 	color: var(--primary-color);
 	background-color: #f5f5ff;
 }
@@ -246,6 +257,24 @@ time {
 	fill: var(--primary-color);
 }
 
-.disabled {
-	display: none;
+.header-tags.disabled, .category-tags.disabled, .todo-card__description.disabled {
+	max-height: 0;
+}
+
+.todo-card__title.disabled{
+	text-decoration: line-through;
+	color: var(--disabled);
+	font-weight: 500;
+}
+
+.todo-card__time-remaining.disabled{
+	color: var(--disabled);
+}
+
+.remaining-time.disabled svg path{
+	fill: var(--disabled);
+}
+
+.complete {
+	background-color: #f7fcfe;
 }
