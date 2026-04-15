@@ -17,19 +17,22 @@
 		</div>
 		<article data-testid="test-todo-card" class="todo-card">
 			<div class="card-header">
-				<input
-					data-testid="test-todo-complete-toggle"
-					type="checkbox"
-					name="complete-toggle"
-					aria-labelledby="test-todo-title"
-					class="complete-toggle" />
+				<label class="checkbox-wrapper">
+					<input
+						data-testid="test-todo-complete-toggle"
+						type="checkbox"
+						name="complete-toggle"
+						aria-labelledby="test-todo-title"
+						class="complete-toggle" />
+					<span class="custom-check"></span>
+				</label>
 				<div class="main-header-section">
 					<h2 data-testid="test-todo-title" class="todo-card__title">
 						Redesign landing page hero section
 					</h2>
 					<div class="header-tags">
-						<span data-testid="test-todo-status" class="todo-card__status">IN PROGRESS</span>
 						<span data-testid="test-todo-priority" class="todo-card__priority">MEDIUM</span>
+						<span data-testid="test-todo-status" class="todo-card__status">IN PROGRESS</span>
 					</div>
 				</div>
 			</div>
@@ -39,15 +42,17 @@
 			</p>
 
 			<div class="time-details">
-				<div class="due-date">
-					<img src="assets/calendar.svg" alt="calendar-icon" />
+				<div class="due-date time">
+					<img src="assets/calendar.svg" alt="calendar-icon" class="icon" />
 					<time data-testid="test-todo-due-date" class="todo-card__due-date">
 						Due Apr 16, 2026
 					</time>
 				</div>
-				<div class="remaining-time">
-					<img src="assets/clock.svg" alt="clock-icon" />
-					<time data-testid="test-todo-time-remaining" class="todo-card__time-remaining"></time>
+				<div class="remaining-time time">
+					<img src="assets/clock.svg" alt="clock-icon" class="icon" />
+					<time data-testid="test-todo-time-remaining" class="todo-card__time-remaining"
+						>Due in xx xx</time
+					>
 				</div>
 			</div>
 
@@ -58,8 +63,34 @@
 			</ul>
 
 			<div class="card-footer-section">
-				<button data-testid="test-todo-edit-button" class="edit-todo">Edit</button>
-				<button data-testid="test-todo-delete-button" class="delete-todo">Delete</button>
+				<button data-testid="test-todo-edit-button" class="button edit-todo">
+					<svg
+						width="15"
+						height="15"
+						viewBox="0 0 15 15"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M1.66667 13.3333H2.85417L11 5.1875L9.8125 4L1.66667 12.1458V13.3333V13.3333M0 15V11.4583L11 0.479167C11.1667 0.326389 11.3507 0.208333 11.5521 0.125C11.7535 0.0416667 11.9653 0 12.1875 0C12.4097 0 12.625 0.0416667 12.8333 0.125C13.0417 0.208333 13.2222 0.333333 13.375 0.5L14.5208 1.66667C14.6875 1.81944 14.809 2 14.8854 2.20833C14.9618 2.41667 15 2.625 15 2.83333C15 3.05556 14.9618 3.26736 14.8854 3.46875C14.809 3.67014 14.6875 3.85417 14.5208 4.02083L3.54167 15H0V15M13.3333 2.83333V2.83333L12.1667 1.66667V1.66667L13.3333 2.83333V2.83333M10.3958 4.60417L9.8125 4V4L11 5.1875V5.1875L10.3958 4.60417V4.60417"
+							fill="#586064" />
+					</svg>
+
+					Edit
+				</button>
+				<button data-testid="test-todo-delete-button" class="button delete-todo">
+					<svg
+						width="14"
+						height="15"
+						viewBox="0 0 14 15"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M2.5 15C2.04167 15 1.64931 14.8368 1.32292 14.5104C0.996528 14.184 0.833333 13.7917 0.833333 13.3333V2.5H0V0.833333H4.16667V0H9.16667V0.833333H13.3333V2.5H12.5V13.3333C12.5 13.7917 12.3368 14.184 12.0104 14.5104C11.684 14.8368 11.2917 15 10.8333 15H2.5V15M10.8333 2.5H2.5V13.3333V13.3333V13.3333H10.8333V13.3333V13.3333V2.5V2.5M4.16667 11.6667H5.83333V4.16667H4.16667V11.6667V11.6667M7.5 11.6667H9.16667V4.16667H7.5V11.6667V11.6667M2.5 2.5V2.5V13.3333V13.3333V13.3333V13.3333V13.3333V13.3333V2.5V2.5"
+							fill="#586064" />
+					</svg>
+
+					Delete
+				</button>
 			</div>
 		</article>
 	</body>

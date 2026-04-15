@@ -1,0 +1,251 @@
+:root {
+	/* Colors */
+	--primary-color: #3c76f1;
+	--bg: #f6f6f6;
+	--bg-surface: #ffffff;
+	--bg-icon: #586064;
+	--text-primary: #4b4b4b;
+	--text-dark: #1e1e1e;
+	--border: #e2e2e2;
+	--danger: #ef4444;
+	--warning: #d79409;
+	--warning-bg: #fff6e2;
+	--label-1: #0b918d;
+	--label-1-bg: #e7fafa;
+	--label-2: #213864;
+	--label-2-bg: #ced3dd;
+	--label-3: #3c76f1;
+	--label-3-bg: #ecf1fe;
+	--disabled: #9b9d9e;
+
+	/* Font Sizes */
+	--h1: 700 1rem/1.5 "Inter", sans-serif;
+	--h2: 700 1.25rem/1.5 "Inter", sans-serif;
+	--header-tags: 700 0.625rem/1.5 "Inter", sans-serif;
+	--category-tags: 600 0.6875rem/1.5 "Inter", sans-serif;
+	--text-p: 400 0.875rem/1.425 "Inter", sans-serif;
+	--icon-label: 500 0.75rem/1 "Inter", sans-serif;
+	--icon-label-bold: 600 0.875rem/1 "Inter", sans-serif;
+	--header-tag-padding: 0.125rem 0.75rem;
+	--category-tag-padding: 0.25rem 0.625rem;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+	background-color: var(--bg);
+	color: var(--text-primary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 42px 16px 16px 16px;
+}
+
+.icon {
+	height: 15px;
+}
+
+.project-title {
+	text-align: center;
+	background-color: var(--text-dark);
+	color: var(--bg-surface);
+	padding: 8px 20px;
+	border-radius: 8px;
+	width: fit-content;
+}
+
+.project-title h1 {
+	font: var(--h1);
+}
+
+.todo-card {
+	background-color: var(--bg-surface);
+	padding: 1.5rem;
+	border-radius: 8px;
+	width: 100%;
+	max-width: 450px;
+	box-shadow: 0 8px 40px -12px rgba(43, 52, 55, 0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 0.94rem;
+}
+
+.card-header {
+	display: flex;
+	align-items: start;
+	gap: 1rem;
+}
+
+.complete-toggle {
+	display: none;
+}
+
+.custom-check {
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-top: 0.3125rem;
+	border: 1px solid var(--disabled);
+	accent-color: var(--primary-color);
+	padding: 6px;
+	border-radius: 0.25rem;
+	cursor: pointer;
+	display: inline-block;
+	transition:
+		width ease-in-out 200ms,
+		height ease-in-out 200ms;
+}
+
+.checkbox-wrapper .complete-toggle:checked + .custom-check {
+	background-color: var(--primary-color);
+	background-image: url("assets/check.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.complete-toggle:checked {
+	background-color: var(--primary-color);
+	border: none;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.main-header-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	gap: 0.5rem;
+}
+
+.todo-card__title {
+	font: var(--h2);
+	color: var(--text-dark);
+}
+
+.header-tags {
+	display: flex;
+	font: var(--header-tags);
+	gap: 0.5rem;
+}
+
+.todo-card__priority {
+	color: var(--warning);
+	background-color: var(--warning-bg);
+	padding: var(--header-tag-padding);
+	border-radius: 10rem;
+}
+
+.todo-card__status {
+	color: var(--label-3);
+	background-color: #f5f5ff;
+	padding: var(--header-tag-padding);
+	border-radius: 10rem;
+}
+
+.todo-card__description {
+	font: var(--text-p);
+}
+
+.time-details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.time {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+time {
+	font: var(--icon-label);
+}
+
+.due-date {
+	color: var(--disabled);
+}
+
+.remaining-time {
+	color: var(--danger);
+}
+
+.category-tags {
+	display: flex;
+	gap: 0.5rem;
+	list-style: none;
+	font: var(--category-tags);
+}
+
+.category-tag {
+	padding: var(--category-tag-padding);
+	margin-top: 0.625rem;
+}
+
+.design {
+	background-color: var(--label-1-bg);
+	color: var(--label-1);
+	border-radius: 0.25rem;
+}
+
+.frontend {
+	background-color: var(--label-2-bg);
+	color: var(--label-2);
+	border-radius: 0.25rem;
+}
+
+.ux {
+	background-color: var(--label-3-bg);
+	color: var(--label-3);
+	border-radius: 0.25rem;
+}
+
+.card-footer-section {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.button {
+	font: var(--icon-label-bold);
+	color: var(--icon-label);
+	background-color: #f9fafb;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.delete-todo:hover{
+	color: var(--danger);
+	background-color: #fef2f2;
+}
+
+.delete-todo:hover svg path{
+    fill: var(--danger);
+}
+
+.edit-todo:hover{
+	color: var(--primary-color);
+	background-color: #f5f5ff;
+}
+
+.edit-todo:hover svg path {
+	fill: var(--primary-color);
+}
+
+.disabled {
+	display: none;
+}
