@@ -7,6 +7,8 @@ let categoryTags = document.querySelector(".category-tags");
 let dueDate = document.querySelector(".todo-card__due-date").getAttribute("datetime");
 let remainingTimeBox = document.querySelector(".remaining-time");
 let timeRemaining = document.querySelector(".todo-card__time-remaining");
+let editButton = document.querySelector(".edit-todo")
+let deleteButton = document.querySelector(".delete-todo")
 
 function calculateTimeRemaining(date) {
 	let due = new Date(date);
@@ -31,6 +33,10 @@ function calculateTimeRemaining(date) {
 	}
 }
 
+completeToggle.addEventListener("keydown", (e) => {
+	if (e.key === "Enter") completeToggle.click();
+});
+
 completeToggle.addEventListener("click", () => {
 	todoCard.classList.toggle("complete");
 	todoCardTitle.classList.toggle("disabled");
@@ -39,6 +45,22 @@ completeToggle.addEventListener("click", () => {
 	categoryTags.classList.toggle("disabled");
 	remainingTimeBox.classList.toggle("disabled");
 	timeRemaining.classList.toggle("disabled");
+});
+
+editButton.addEventListener("click", (e) => {
+    alert("edit clicked");
+});
+
+editButton.addEventListener("keydown", (e) => {
+	if (e.key === "Enter") editButton.click();
+});
+
+deleteButton.addEventListener("click", () => {
+    alert("delete clicked");
+});
+
+deleteButton.addEventListener("keydown", (e) => {
+	if (e.key === "Enter") deleteButton.click();
 });
 
 function startCountdown(timeEl) {
