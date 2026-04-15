@@ -1,3 +1,9 @@
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+
 app.get("/api/classify", async (req, res) => {
 	const name = req.query.name;
 
@@ -37,4 +43,9 @@ app.get("/api/classify", async (req, res) => {
 			},
 		})
 		.header("Access-Control-Allow-Origin", "*");
+});
+
+
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
 });
