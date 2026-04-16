@@ -4,34 +4,43 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// Allow simple CORS for local testing
+app.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	next();
+});
 app.get("/api/classify", async (req, res) => {
 	const name = req.query.name;
 
-	if (!name || typeof name !== "string") {
+	if (!name || typeof name !== "string" || name.trim() === "") {
 		return res.status(422).json({ status: "error", message: "Invalid name" });
 	}
 
-	const response = await fetch(`https://api.genderize.io/?name=${name}`);
-	const data = await response.json();
+	try {
+		const response = await fetch(`https://api.genderize.io/?name=${encodeURIComponent(name)}`);
 
-	const gender = data.gender;
-	const probability = data.probability;
-	const sample_size = data.count;
+		if (!response || !response.ok) {
+			return res.status(502).json({ status: "error", message: "Upstream API error" });
+		}
 
-	const is_confident = probability >= 0.7 && sample_size >= 100;
+		const data = await response.json();
 
-	const processed_at = new Date().toISOString();
+		const gender = data.gender;
+		const probability = Number(data.probability) || 0;
+		const sample_size = Number(data.count) || 0;
 
-	if (!gender || gender === "null" || sample_size === 0) {
+		const is_confident = probability >= 0.7 && sample_size >= 100;
+
+		const processed_at = new Date().toISOString();
+
+		if (gender == null || sample_size === 0) {
+			return res.status(200).json({
+				status: "error",
+				message: "No prediction available for the provided name",
+			});
+		}
+
 		return res.status(200).json({
-			status: "error",
-			message: "No prediction available for the provided name",
-		});
-	}
-
-	return res
-		.status(200)
-		.json({
 			status: "success",
 			data: {
 				name,
@@ -41,10 +50,13 @@ app.get("/api/classify", async (req, res) => {
 				is_confident,
 				processed_at,
 			},
-		})
-		.header("Access-Control-Allow-Origin", "*");
+		});
+	} catch (err) {
+		return res
+			.status(500)
+			.json({ status: "error", message: "Internal server error", detail: err.message });
+	}
 });
-
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
